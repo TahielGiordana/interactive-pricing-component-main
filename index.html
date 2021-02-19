@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <!--Syles-->
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Frontend Mentor | Interactive pricing component</title>
+  </head>
+  <body>
+    <header class="titleContainer">
+      <h1 class="titleContainer__title">Simple, traffic-based pricing</h1>
+      <p class="titleContaier__text">
+        Sign-up for our 30-day trial. No credit card required.
+      </p>
+    </header>
+    <main class="content">
+      <p class="content__pageviews">
+        <span class="content__pageviews__amount">100k</span> Pageviews
+      </p>
+      <div class="content__price">
+        <span class="content__price__number">$16.00</span>
+        <span class="content__price__time">/month</span>
+      </div>
+      <div class="content__slidebar">
+        <div class="content__slidebar__progress"></div>
+        <input type="range" min="1" max="5" value="3" id="range" />
+      </div>
+      <div class="content__toggle">
+        <span>Monthly Billing</span>
+        <label class="content__toggle__switch">
+          <input type="checkbox" />
+          <span class="slider"></span>
+        </label>
+        <span>Yearly Billing</span>
+      </div>
+      <div class="content__desc">
+        <span>Unlimited websites</span>
+        <span>100% data ownership</span>
+        <span>Email reports</span>
+      </div>
+      <button class="content__button">Start my trial</button>
+    </main>
+    <!--Scripts-->
+    <script src="/js/main.js"></script>
+  </body>
+</html>

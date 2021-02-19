@@ -1,0 +1,331 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background: url(/images/bg-pattern.svg);
+  font-size: 62.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleContainer {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1em;
+  text-align: center;
+  color: hsl(227, 35%, 25%);
+  font-size: 1rem;
+  background: url(/images/pattern-circles.svg) no-repeat center;
+  background-size: contain;
+
+  p {
+    color: hsl(225, 20%, 60%);
+    margin-top: 1em;
+  }
+}
+
+.content {
+  background: #fff;
+  width: 40%;
+  height: 60%;
+  min-height: 300px;
+  border-radius: 0.5em;
+  box-shadow: 0 1em 1em hsla(227, 35%, 25%, 0.219);
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "pageviews price"
+    "slidebar slidebar"
+    "toggle toggle"
+    "desc button";
+  margin: 1em;
+  padding: 3em;
+  min-width: max-content;
+
+  &__pageviews {
+    text-transform: uppercase;
+    color: hsl(225, 20%, 60%);
+    grid-area: pageviews;
+    font-size: 0.7rem;
+    letter-spacing: 0.1rem;
+    padding-top: 2em;
+    font-weight: bold;
+  }
+
+  &__price {
+    grid-area: price;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    justify-self: right;
+    &__number {
+      font-size: 3rem;
+      color: hsl(227, 35%, 25%);
+    }
+    &__time {
+      color: hsl(225, 20%, 60%);
+      font-size: 1rem;
+    }
+  }
+
+  &__slidebar {
+    grid-area: slidebar;
+    width: 100%;
+    height: 0.5em;
+    border-radius: 1em;
+    position: relative;
+
+    &__progress {
+      background: hsl(174, 86%, 45%);
+      width: 46%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, 50%);
+      z-index: 1;
+    }
+
+    #range {
+      appearance: none;
+      width: 100%;
+      height: 0.5em;
+      background: hsl(223, 50%, 87%);
+      outline: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      border-radius: 1em;
+    }
+
+    #range:hover {
+      opacity: 1;
+    }
+
+    #range::-webkit-slider-thumb {
+      -webkit-appearance: none; /* Override default look */
+      appearance: none;
+      width: 40px; /* Set a specific slider handle width */
+      height: 40px; /* Slider handle height */
+      background: #4caf50; /* Green background */
+      cursor: pointer; /* Cursor on hover */
+      border-radius: 50%;
+      background-image: url(/images/icon-slider.svg);
+      background-color: hsl(174, 86%, 45%);
+      background-repeat: no-repeat;
+      background-position: center;
+      box-shadow: 0 0.5em 2em hsl(174, 86%, 45%);
+    }
+
+    #range::-moz-range-thumb {
+      width: 25px; /* Set a specific slider handle width */
+      height: 25px; /* Slider handle height */
+      background: #4caf50; /* Green background */
+      cursor: pointer; /* Cursor on hover */
+    }
+  }
+
+  &__toggle {
+    color: hsl(225, 20%, 60%);
+    grid-area: toggle;
+    align-self: center;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 0.7rem;
+
+    &__switch {
+      position: relative;
+      width: 45px;
+      height: 24px;
+      display: inline-block;
+      margin: 0 1em;
+
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: hsl(223, 50%, 87%);
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: hsl(174, 86%, 45%);
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px hsl(174, 86%, 45%);
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(16px);
+        -ms-transform: translateX(16px);
+        transform: translateX(21px);
+      }
+    }
+  }
+
+  &__toggle::after {
+    content: "25% discount";
+    background: hsl(14, 92%, 95%);
+    color: hsl(15, 100%, 70%);
+    border-radius: 1em;
+    margin-left: 1em;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    min-width: max-content;
+    transform: translate(0, -50%);
+    padding: 0.3em 1em;
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    grid-area: desc;
+    align-self: flex-end;
+    justify-self: left;
+    font-size: 0.7rem;
+
+    span {
+      margin: 0.5em;
+      color: hsl(225, 20%, 60%);
+    }
+
+    span::before {
+      content: url(/images/icon-check.svg);
+      margin: 1em;
+    }
+  }
+
+  &__button {
+    padding: 1em 2em;
+    border-radius: 2em;
+    background: hsl(227, 35%, 25%);
+    color: hsl(226, 100%, 87%);
+    grid-area: button;
+    border: none;
+    outline: none;
+    height: fit-content;
+    width: 80%;
+    align-self: center;
+    justify-self: end;
+    transform: translate(0, 50%);
+    font-weight: bold;
+  }
+
+  &__button:hover {
+    cursor: pointer;
+    color: hsl(223, 50%, 87%);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 2em 0;
+  }
+  .content {
+    width: 90%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, fit-content);
+    grid-template-areas:
+      "pageviews"
+      "slidebar"
+      "price"
+      "toggle"
+      "desc"
+      "button";
+
+    &__pageviews {
+      grid-area: pageviews;
+      font-size: 0.8rem;
+      letter-spacing: 0.1rem;
+      padding-top: 2em;
+      font-weight: bold;
+      align-self: flex-start;
+      justify-self: center;
+    }
+
+    &__slidebar {
+      grid-area: slidebar;
+      align-self: center;
+    }
+
+    &__price {
+      grid-area: price;
+      justify-self: center;
+      align-self: center;
+    }
+
+    &__toggle {
+      grid-area: toggle;
+      font-size: 0.8rem;
+    }
+
+    &__toggle::after {
+      content: "-25%";
+    }
+
+    &__desc {
+      justify-content: center;
+      align-items: center;
+      justify-self: center;
+      align-self: flex-end;
+    }
+
+    &__button {
+      align-self: center;
+      justify-self: center;
+      width: 50%;
+    }
+  }
+
+  .titleContainer {
+    font-size: 0.7rem;
+    height: 20%;
+
+    p {
+      width: 50%;
+    }
+  }
+}
